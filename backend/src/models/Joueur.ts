@@ -9,7 +9,7 @@ export interface IJoueur extends Document {
     nationalite: string;
     position: string;
     valeur: number;
-    equipe: IEquipe;
+    equipe?: IEquipe;
 }
 
 const joueurSchema = new Schema({

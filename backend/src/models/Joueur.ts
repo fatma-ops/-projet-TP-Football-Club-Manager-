@@ -1,6 +1,5 @@
-import { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 import {IEquipe} from "./Equipe";
-import * as mongoose from "mongoose";
 
 export interface IJoueur extends Document {
     id: string;

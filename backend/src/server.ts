@@ -1,5 +1,5 @@
-
 import mongoose from 'mongoose';
+import cors from 'cors';
 import express, { Express, Request, Response } from "express";
 import equipeRoutes from './routes/equipeRoutes';
 import joueurRoutes from './routes/joueurRoutes';
@@ -10,9 +10,9 @@ import tournoiRoutes from './routes/tournoiRoutes';
 const app :Express = express()
 const Port = 4000;
 
-
 // Middleware pour le parsing de JSON doit venir avant les routes
 app.use(express.json());
+app.use(cors())
 
 // Définition des routes
 app.use('/api/users', userRoutes);

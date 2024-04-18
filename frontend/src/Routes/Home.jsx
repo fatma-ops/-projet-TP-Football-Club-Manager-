@@ -1,7 +1,6 @@
 import Navbar from "../Components/Navbar";
 import {Link} from "react-router-dom";
 
-
 export default function Home() {
     return (
       <div className={"vw-100 vh-100 overflow-auto"} style={{backgroundImage: "url(https://sm.ign.com/t/ign_fr/news/e/ea-sports-/ea-sports-fc-24-fully-revealed-release-date-ultimate-team-an_bxcw.1200.jpg)", backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>

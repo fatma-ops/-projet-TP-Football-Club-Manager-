@@ -4,7 +4,7 @@ import equipeRoutes from './routes/equipeRoutes';
 import joueurRoutes from './routes/joueurRoutes';
 import userRoutes from './routes/userRoutes';
 const app: Express = express();
-const port = 4000 ;
+const port = 4000 ; 
 // Middleware pour le parsing de JSON doit venir avant les routes
 app.use(express.json());
 

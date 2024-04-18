@@ -28,7 +28,6 @@ const useScreenSize = () => {
 };
 
 export default function Navbar() {
-    console.log(useScreenSize());
     const screenSize = useScreenSize();
     return (
       <div>

@@ -1,4 +1,3 @@
-
 import mongoose from 'mongoose';
 import express, {Express} from "express";
 import equipeRoutes from './routes/equipeRoutes'
@@ -7,8 +6,6 @@ import userRoutes from './routes/userRoutes'
 
 const app :Express = express()
 const Port = 4000;
-
-
 
 app.use('/api/user' ,userRoutes )
 app.use('/api/joueur' ,joueurRoutes, )

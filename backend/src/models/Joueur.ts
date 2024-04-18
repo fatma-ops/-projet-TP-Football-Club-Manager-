@@ -22,5 +22,4 @@ const joueurSchema = new Schema({
 
 const JoueurModel = mongoose.model<IJoueur>('Joueur', joueurSchema);
 
-
-
+export default JoueurModel;

@@ -1,18 +1,18 @@
 
 import mongoose from 'mongoose';
 import express, {Express} from "express";
-import equipeRoutes from '../src/routes/equipeRoutes'
-import joueurRoutes from '../src/routes/joueurRoutes'
-import userRoutes from '../src/routes/userRoutes'
+import joueurRoutes from './routes/joueurRoutes'
+import userRoutes from './routes/userRoutes'
+import equipeRoutes from './routes/equipeRoutes'
 
 const app :Express = express()
 const Port = 4000;
 
 
 
-app.use('/api/user' ,userRoutes )
-app.use('/api/joueur' ,joueurRoutes, )
-app.use('/api/user', equipeRoutes, )
+app.use('/api/user',userRoutes )
+app.use('/api/joueur',joueurRoutes)
+app.use('/api/equipe', equipeRoutes)
 
 
 

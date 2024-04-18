@@ -14,14 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const express_1 = __importDefault(require("express"));
-const equipeRoutes_1 = __importDefault(require("../src/routes/equipeRoutes"));
-const joueurRoutes_1 = __importDefault(require("../src/routes/joueurRoutes"));
-const userRoutes_1 = __importDefault(require("../src/routes/userRoutes"));
+const joueurRoutes_1 = __importDefault(require("./routes/joueurRoutes"));
+const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
+const equipeRoutes_1 = __importDefault(require("./routes/equipeRoutes"));
 const app = (0, express_1.default)();
 const Port = 4000;
 app.use('/api/user', userRoutes_1.default);
 app.use('/api/joueur', joueurRoutes_1.default);
-app.use('/api/user', equipeRoutes_1.default);
+app.use('/api/equipe', equipeRoutes_1.default);
 const uri = "mongodb+srv://fatma:Vh7Lig6lgIaIRU91@cluster0.1sydj3x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 function run() {
     return __awaiter(this, void 0, void 0, function* () {

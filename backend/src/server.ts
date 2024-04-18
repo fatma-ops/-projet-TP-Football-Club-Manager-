@@ -6,6 +6,9 @@ import userRoutes from './routes/userRoutes';
 import matchRoutes from './routes/matchRoutes';
 import tournoiRoutes from './routes/tournoiRoutes';
 
+const app: Express = express();
+const port = 4000;
+
 // Middleware pour le parsing de JSON doit venir avant les routes
 app.use(express.json());
 
@@ -31,7 +34,7 @@ async function run() {
 run().catch(console.dir);
 
 // Middleware pour gérer les erreurs
-app.use((err: Error, req: Request, res: Response, next: Function) => {
+app.use((err: Error, req: Request, res: Response) => {
     console.error(err.stack);
     res.status(500).send('Quelque chose s\'est mal passé!');
 });

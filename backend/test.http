@@ -7,7 +7,7 @@ Content-Type: application/json
 {
   "nom": "John",
   "email": "john.doe@example.com",
-  "motDePasse": "s3cr3t",
+  "motDePasse": "s3cr3ttt",
   "role": "admin",
   "club": "1234567890abcdef12345678"
 }

@@ -1,0 +1,75 @@
+@host = http://localhost:4000/
+
+### Créer un nouvel utilisateur
+POST {{host}}api/users
+Content-Type: application/json
+
+{
+  "nom": "John",
+  "email": "john.doe@example.com",
+  "motDePasse": "s3cr3t",
+  "role": "admin",
+  "club": "1234567890abcdef12345678"
+}
+
+### Obtenir tous les utilisateurs
+GET {{host}}api/users
+
+### Créer un nouveau joueur
+POST {{host}}api/joueurs
+Content-Type: application/json
+
+{
+  "nom": "Robert Lewandowski",
+  "age": 32,
+  "nationalite": "Polish",
+  "position": "Striker",
+  "valeur": 100000000,
+  "equipe": "1234567890abcdef12345680"
+}
+
+### Obtenir tous les joueurs
+GET {{host}}api/joueurs
+
+### Créer une nouvelle équipe
+POST {{host}}api/equipes
+Content-Type: application/json
+
+{
+  "nom": "FC Barcelona",
+  "budget": 1000000,
+  "manager": "1234567890abcdef12345678",
+  "joueurs": ["1234567890abcdef12345678"]
+}
+
+### Obtenir toutes les équipes
+GET {{host}}api/equipes
+
+### Créer un nouveau match
+POST {{host}}api/matchs
+Content-Type: application/json
+
+{
+  "equipeA": "1234567890abcdef12345678",
+  "equipeB": "1234567890abcdef12345679",
+  "scoreA": 3,
+  "scoreB": 1,
+  "dateDuMatch": "2024-04-01T14:00:00.000Z"
+}
+
+### Obtenir tous les matchs
+GET {{host}}api/matchs
+
+### Créer un nouveau tournoi
+POST {{host}}api/tournois
+Content-Type: application/json
+
+{
+  "nomDuTournoi": "Champions League",
+  "reglement": "Standard UEFA rules",
+  "equipesParticipantes": ["1234567890abcdef12345678", "1234567890abcdef12345679"],
+  "matchs": ["1234567890abcdef1234567a"]
+}
+
+### Obtenir tous les tournois
+GET {{host}}api/tournois

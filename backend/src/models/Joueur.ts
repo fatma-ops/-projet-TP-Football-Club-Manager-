@@ -1,6 +1,5 @@
-import { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 import {IEquipe} from "./Equipe";
-import * as mongoose from "mongoose";
 
 export interface IJoueur extends Document {
     id: string;
@@ -23,5 +22,4 @@ const joueurSchema = new Schema({
 
 const JoueurModel = mongoose.model<IJoueur>('Joueur', joueurSchema);
 
-
-
+export default JoueurModel;

@@ -1,37 +1,47 @@
-
 import mongoose from 'mongoose';
-import express, {Express} from "express";
-import equipeRoutes from './routes/equipeRoutes'
-import joueurRoutes from './routes/joueurRoutes'
-import userRoutes from './routes/userRoutes'
-
-const app :Express = express()
-const Port = 4000;
-
-
-
-app.use('/api/user' ,userRoutes )
-app.use('/api/joueur' ,joueurRoutes, )
-app.use('/api/user', equipeRoutes, )
+import express, { Express, Request, Response } from "express";
+import equipeRoutes from './routes/equipeRoutes';
+import joueurRoutes from './routes/joueurRoutes';
+import userRoutes from './routes/userRoutes';
+import matchRoutes from './routes/matchRoutes';
+import tournoiRoutes from './routes/tournoiRoutes';
 
 
 
+const app: Express = express();
+const port = 4000;
+
+// Middleware pour le parsing de JSON doit venir avant les routes
+app.use(express.json());
+
+// Définition des routes
+app.use('/api/users', userRoutes);
+app.use('/api/joueurs', joueurRoutes);
+app.use('/api/equipes', equipeRoutes); 
+app.use('/api/matchs', matchRoutes); 
+app.use('/api/tournois', tournoiRoutes);
+
+// URI de connexion à MongoDB
 const uri = "mongodb+srv://fatma:Vh7Lig6lgIaIRU91@cluster0.1sydj3x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 async function run() {
     try {
-        // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
         await mongoose.connect(uri);
-        await mongoose.connection.db.admin().command({ ping: 1 });
         console.log("Base de données connectée avec succès !");
     } catch (e) {
-        console.error(e);
+        console.error("Erreur de connexion à la base de données:", e);
     }
 }
+
 run().catch(console.dir);
 
-app.use(express.json()) ;
+// Middleware pour gérer les erreurs
+app.use((err: Error, req: Request, res: Response, next: Function) => {
+    console.error(err.stack);
+    res.status(500).send('Quelque chose s\'est mal passé!');
+});
 
-app.listen( Port , () => {
-    console.log(`serveur running on port ${Port}`)
-}) 
+// Démarrage du serveur
+app.listen(port, () => {
+    console.log(`Le serveur fonctionne sur le port ${port}`);
+});

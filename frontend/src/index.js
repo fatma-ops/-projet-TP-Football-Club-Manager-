@@ -10,13 +10,19 @@ import {
 } from "react-router-dom";
 import ErrorPage from "./Routes/errorPage";
 import Home from "./Routes/Home";
+import User from "./Routes/User";
 
 const rooting = createBrowserRouter([
     {
       path: "/",
       element: <Home/>,
       errorElement: <ErrorPage/>,
-    }
+    },
+  {
+      path: "/user",
+      element: <User/>,
+      errorElement: <ErrorPage/>,
+  }
   ]
 )
 

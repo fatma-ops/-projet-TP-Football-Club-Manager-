@@ -6,11 +6,6 @@ import userRoutes from './routes/userRoutes';
 import matchRoutes from './routes/matchRoutes';
 import tournoiRoutes from './routes/tournoiRoutes';
 
-
-
-const app: Express = express();
-const port = 4000;
-
 // Middleware pour le parsing de JSON doit venir avant les routes
 app.use(express.json());
 

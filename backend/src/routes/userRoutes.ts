@@ -2,7 +2,6 @@ import { Router, Request, Response } from "express";
 import User , {IUtilisateur}  from "../models/User";
 import { signUp  } from '../controller/userController';
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 
 const router = Router();
 
@@ -25,23 +24,23 @@ router.post('/signup', async (req: Request, res: Response) => {
     }
   });
 
-  router.post('/signin', async (req: Request, res: Response) => {
+  router.post('/signin', async (req: Request, res: Response ,next) => {
     try {
         const { email, motDePasse }: Pick<IUtilisateur, "email" | "motDePasse"> = req.body;
 
         const utilisateur = await User.findOne({ email });
         if (!utilisateur) {
-            return res.status(400).json({ message: "L'email  est incorrect." });
+            return res.status(400).send({ message: "L'email  est incorrect." });
         }
 
         const motDePasseValide = await bcrypt.compare(motDePasse, utilisateur.motDePasse);
         if (!motDePasseValide) {
-            return res.status(400).json({ message: "le mot de passe est incorrect." });
+            return res.status(400).send({ message: "le mot de passe est incorrect." });
         }
 
-        res.status(200).json({ message: "Connexion réussie." });
-    } catch (error: any) {
-        res.status(500).json({ message: error.message });
+        return res.status(200).send({ message: "Connexion réussie." });
+    } catch (error ) {
+        res.status(500).send({ message: error});
     }
 });
 

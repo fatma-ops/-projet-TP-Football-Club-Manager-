@@ -2,7 +2,6 @@
 import { Request, Response } from 'express';
 import User, { IUtilisateur } from './../models/User';
 import bcrypt from 'bcrypt';
-import createToken from '../util/createToken';
 
 export const signUp = async (req: Request, res: Response) => {
   try {

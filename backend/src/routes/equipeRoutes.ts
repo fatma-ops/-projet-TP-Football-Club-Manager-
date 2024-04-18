@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
-import Equipe from "../models/Equipe";
+import EquipeModel from "../models/Equipe";
 
 const router = Router();
 
 router.get('/', async (_req: Request, res: Response) => {
-    const equipes = await Equipe.find().populate('joueurs manager');
+    const equipes = await EquipeModel.find().populate('joueurs manager');
     if (!equipes.length) {
         return res.status(404).json({ message: 'Aucune équipe trouvée' });
     }
@@ -14,7 +14,7 @@ router.get('/', async (_req: Request, res: Response) => {
 router.post('/', async (req: Request, res: Response) => {
     try {
         const { nom, budget, manager, joueurs } = req.body;
-        const equipe = new Equipe({ nom, budget, manager, joueurs });
+        const equipe = new EquipeModel({ nom, budget, manager, joueurs });
         await equipe.save();
         res.status(201).json(equipe);
     } catch (error) {
@@ -23,7 +23,7 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 router.get('/:id', async (req: Request, res: Response) => {
-    const equipe = await Equipe.findById(req.params.id).populate('joueurs manager');
+    const equipe = await EquipeModel.findById(req.params.id).populate('joueurs manager');
     if (!equipe) {
         return res.status(404).json({ message: 'Équipe non trouvée' });
     }
@@ -33,7 +33,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 router.put('/:id', async (req: Request, res: Response) => {
     try {
         const { nom, budget, manager, joueurs } = req.body;
-        const equipe = await Equipe.findByIdAndUpdate(req.params.id, { nom, budget, manager, joueurs }, { new: true }).populate('joueurs manager');
+        const equipe = await EquipeModel.findByIdAndUpdate(req.params.id, { nom, budget, manager, joueurs }, { new: true }).populate('joueurs manager');
         if (!equipe) {
             return res.status(404).json({ message: 'Équipe non trouvée' });
         }
@@ -44,7 +44,7 @@ router.put('/:id', async (req: Request, res: Response) => {
 });
 
 router.delete('/:id', async (req: Request, res: Response) => {
-    const deleted = await Equipe.findByIdAndDelete(req.params.id);
+    const deleted = await EquipeModel.findByIdAndDelete(req.params.id);
     if (!deleted) {
         return res.status(404).json({ message: 'Équipe non trouvée' });
     }

@@ -11,13 +11,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:4000/api/user/signin`, { email, motDePasse });
+      const response = await axios.post(`http://localhost:4000/api/users/signin`, { email, motDePasse });
       console.log(response.data.message);
       setMessage(response.data.message);
     } catch (error) {
       console.error('Erreur lors de la connexion:', error.message);
-      setMessage('Une erreur est survenue lors de la connexion.');
-    }
+      setMessage(error.response.data.message);
+  }
   };
 
   return (

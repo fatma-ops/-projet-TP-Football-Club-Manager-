@@ -30,7 +30,7 @@ const rooting = createBrowserRouter([
       path: "/register",
       element: <Register/>,
       errorElement: <ErrorPage/>,
-    }
+    },
 
   {
       path: "/user",

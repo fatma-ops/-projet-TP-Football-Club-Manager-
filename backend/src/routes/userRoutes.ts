@@ -2,12 +2,13 @@ import { Router, Request, Response } from "express";
 import User , {IUtilisateur}  from "../models/User";
 import { signUp  } from '../controller/userController';
 import bcrypt from 'bcrypt'
+import EquipeModel from "../models/Equipe";
 
 const router = Router();
 
 
 router.get('/', async (_req: Request, res: Response) => {
-    const users = await User.find();
+    const users = await User.find().populate('club');
     if (!users.length) {
         return res.status(404).json({ message: "Pas d'utilisateur trouvé" });
     }
@@ -44,8 +45,6 @@ router.post('/signup', async (req: Request, res: Response) => {
     }
 });
 
-
-
 router.get('/:id', async (req: Request, res: Response) => {
     const user = await User.findById(req.params.id).populate({ path: 'club', populate: "joueurs"});
 
@@ -58,7 +57,8 @@ router.get('/:id', async (req: Request, res: Response) => {
 router.put('/:id', async (req: Request, res: Response) => {
     try {
         const { name, email, motDePasse, isAdmin, club } = req.body;
-        const user = await User.findByIdAndUpdate(req.params.id, { name, email, motDePasse, isAdmin, club }, { new: true });
+        const user = await User.findByIdAndUpdate(req.params.id, { name, email, motDePasse, isAdmin }, { new: true });
+        
         if (!user) {
             return res.status(404).json({ message: 'Utilisateur introuvable' });
         }

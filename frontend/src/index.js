@@ -13,6 +13,7 @@ import Home from "./Routes/Home";
 import Login from './Routes/Login';
 import Register from './Routes/Register';
 import User from "./Routes/User";
+import Admin from './Routes/Admin';
 
 const rooting = createBrowserRouter([
     {
@@ -36,7 +37,12 @@ const rooting = createBrowserRouter([
       path: "/user",
       element: <User/>,
       errorElement: <ErrorPage/>,
-  }
+  },
+  {
+    path: "/admin",
+    element: <Admin/>,
+    errorElement: <ErrorPage/>,
+}
 
   ]
 )

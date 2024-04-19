@@ -42,8 +42,6 @@ export default function User() {
     );
   }
 
-  console.log(matchs);
-
   const compositionEquipe = user.club.joueurs.map((joueur) => {
     return (
       <div key={joueur._id} className={"card"}>

@@ -24,6 +24,7 @@ router.post('/', async (req: Request, res: Response) => {
 
 router.get('/:id', async (req: Request, res: Response) => {
     const user = await User.findById(req.params.id).populate({ path: 'club', populate: "joueurs"});
+
     if (!user) {
         return res.status(404).json({ message: 'Utilisateur introuvable' });
     }

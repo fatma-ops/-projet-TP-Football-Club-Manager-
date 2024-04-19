@@ -58,17 +58,17 @@ export default function Navbar() {
                           <Link to={"/"} className={"nav-link"} aria-current="page">Accueil</Link>
                           {userSession ? (
                               <>
-                                  <Link
-                                    to={"/"}
+                                  <button
+                                    type={"button"}
                                     style={{marginLeft: screenSize.width > 900 ? "auto" : "", width:screenSize.width < 900 ? "50%" : ""}}
                                     className={"btn btn-danger"}
                                     onClick={() => {
                                         window.sessionStorage.clear();
-                                        window.location.reload();
+                                        window.location.href = "/";
                                     }}
                                   >
                                       Déconnexion
-                                  </Link>                                  {userSession.isAdmin && (
+                                  </button>                                  {userSession.isAdmin && (
                                     <Link to={"/admin"} style={{width: screenSize.width < 900 ? "50%" : ""}}
                                           className={"btn btn-primary ms-2"}>Panel admin</Link>
                                   )}

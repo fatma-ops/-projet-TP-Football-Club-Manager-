@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import cors from 'cors';
-import express, { Express, Request, Response } from "express";
+import express, {Express, NextFunction, Request, Response} from "express";
 import equipeRoutes from './routes/equipeRoutes';
 import joueurRoutes from './routes/joueurRoutes';
 import userRoutes from './routes/userRoutes';
@@ -35,7 +35,7 @@ async function run() {
 run().catch(console.dir);
 
 // Middleware pour gérer les erreurs
-app.use((err: Error, req: Request, res: Response) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(err.stack);
     res.status(500).send('Quelque chose s\'est mal passé!');
 });

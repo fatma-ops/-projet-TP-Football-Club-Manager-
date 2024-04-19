@@ -12,7 +12,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/api/user/signup', { nom, email, motDePasse, club });
+      const response = await axios.post('http://localhost:4000/api/users/signup', { nom, email, motDePasse, club });
       console.log(response.data.message);
       setMessage(response.data.message);
     } catch (error) {

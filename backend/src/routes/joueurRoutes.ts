@@ -11,6 +11,14 @@ router.get('/', async (_req: Request, res: Response) => {
     res.status(200).json(joueurs);
 });
 
+router.get('/market', async (_req: Request, res: Response) => {
+    const joueurs = await Joueur.find( { equipe: null });
+    if (!joueurs.length) {
+        return res.status(404).json({ message: 'Aucun joueur trouvé' });
+    }
+    res.status(200).json(joueurs);
+});
+
 router.post('/', async (req: Request, res: Response) => {
     try {
         const { nom, age, nationalite, position, valeur, equipe } = req.body;

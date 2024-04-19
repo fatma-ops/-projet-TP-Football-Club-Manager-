@@ -127,4 +127,34 @@ router.put('/:id/vendre/:joueurId', async (req: Request, res: Response) => {
     }
 });
 
+
+// Mettre à jour la formation de l'équipe
+router.put('/:id/formation', async (req: Request, res: Response) => {
+    try {
+        const { formation } = req.body;
+        const equipe = await Equipe.findByIdAndUpdate(req.params.id, { formation }, { new: true }).populate('joueurs');
+        if (!equipe) {
+            return res.status(404).json({ message: 'Équipe non trouvée' });
+        }
+        res.status(200).json({ message: 'Formation mise à jour', equipe });
+    } catch (error) {
+        res.status(400).json({ message: 'Erreur lors de la mise à jour de la formation de l\'équipe', error: (error as Error).message });
+    }
+});
+
+// Modifier les tactiques de l'équipe
+router.put('/:id/tactiques', async (req: Request, res: Response) => {
+    try {
+        const { tactiques } = req.body;
+        const equipe = await Equipe.findByIdAndUpdate(req.params.id, { tactiques }, { new: true });
+        if (!equipe) {
+            return res.status(404).json({ message: 'Équipe non trouvée' });
+        }
+        res.status(200).json({ message: 'Tactiques mises à jour', equipe });
+    } catch (error) {
+        res.status(400).json({ message: 'Erreur lors de la mise à jour des tactiques de l\'équipe', error: (error as Error).message });
+    }
+});
+
+
 export default router;

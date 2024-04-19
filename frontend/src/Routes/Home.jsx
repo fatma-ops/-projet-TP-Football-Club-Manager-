@@ -17,7 +17,7 @@ export default function Home() {
                         Rencontrez des joueurs légendaires, élaborez des stratégies gagnantes et affrontez les meilleurs clubs du monde dans votre quête pour devenir le meilleur manager de football. Avec Football Manager 2015, l'excitation du terrain se mêle à la stratégie hors du terrain pour une expérience de jeu inoubliable.
                         Êtes-vous prêt à relever le défi et à devenir une légende du football ? Rejoignez-nous dès maintenant et commencez votre voyage vers la gloire sur Football Manager 2015 !
                         </p>
-                        <Link to={"/register"} className={"btn btn-primary w-75"}><h1>Devenez un entraîneur !</h1></Link>
+                            <Link to={"/user"} className={"btn btn-primary w-75"}><h1>Tableau de bord</h1></Link>                          
                     </div>
                 </div>
             </div>

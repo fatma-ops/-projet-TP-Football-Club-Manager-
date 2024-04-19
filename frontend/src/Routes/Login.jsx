@@ -20,8 +20,8 @@ const Login = () => {
       navigate("/user");
     } catch (error) {
       console.error('Erreur lors de la connexion:', error.message);
-      setMessage('Une erreur est survenue lors de la connexion.');
-    }
+      setMessage(error.response.data.message);
+  }
   };
 
   return (

@@ -30,12 +30,12 @@ router.post('/signup', async (req: Request, res: Response) => {
 
         const utilisateur = await User.findOne({ email });
         if (!utilisateur) {
-            return res.status(400).send({ message: "L'email  est incorrect." });
+            return res.status(400).send({ message: "L'e-mail ou le mot de passe est incorrect." });
         }
 
         const motDePasseValide = await bcrypt.compare(motDePasse, utilisateur.motDePasse);
         if (!motDePasseValide) {
-            return res.status(400).send({ message: "le mot de passe est incorrect." });
+            return res.status(400).send({ message: "L'e-mail ou le mot de passe est incorrect." });
         }
 
         return res.status(200).json(utilisateur);

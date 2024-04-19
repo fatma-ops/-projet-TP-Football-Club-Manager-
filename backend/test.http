@@ -84,64 +84,104 @@
 # ### Obtenir tous les tournois
 # GET {{host}}api/tournois
 
-### Récupérer tous les joueurs
-GET {{host}}api/joueurs
-Content-Type: application/json
+# ### Récupérer tous les joueurs
+# GET {{host}}api/joueurs
+# Content-Type: application/json
 
-### Récupérer toutes les équipes
-GET {{host}}api/equipes
+# ### Récupérer toutes les équipes
+# GET {{host}}api/equipes
+# Content-Type: application/json
+
+# ###
+# ### Récupérer les joueurs non assignés (sur le marché)
+# GET {{host}}api/joueurs/market
+# Content-Type: application/json
+
+
+# ### Mise à jour de la formation d'une équipe spécifique
+# PUT {{host}}api/equipes/6620f411cf33049f89db3f34/formation
+# Content-Type: application/json
+
+# { "formation": 
+# [
+# {
+#   "joueurId": "6620f402cf33049f89db3f30",
+#   "position": "Forward"
+# },
+# {
+#   "joueurId": "66210cedbae692a7c849cc7e",
+#   "position": "Striker"
+# }
+# ]
+# }
+
+# ###
+
+# ### Modifier les tactiques d'une équipe spécifique
+# PUT {{host}}api/equipes/6620f411cf33049f89db3f34/tactiques
+# Content-Type: application/json
+
+# {
+#   "tactiques": "Contre-Attaque"
+# }
+
+# ###
+
+# ### Supprimer une équipe spécifique
+# DELETE {{host}}api/equipes/6620f411cf33049f89db3f34"pasfaire"
+# Content-Type: application/json
+
+# ###
+
+# ### Ajouter un joueur à une équipe
+# PUT {{host}}api/equipes/662252b2667ef7818831ea69/ajouter/66226077667ef7818831eab0
+# Content-Type: application/json
+
+# ###
+
+# ### Vendre un joueur de l'équipe
+# PUT {{host}}api/equipes/6620f411cf33049f89db3f34/vendre/66225ff6667ef7818831eaaa
+# Content-Type: application/json
+
+
+### Récupérer tous les tournois
+GET {{host}}api/tournois
 Content-Type: application/json
 
 ###
-### Récupérer les joueurs non assignés (sur le marché)
-GET {{host}}api/joueurs/market
+
+### Mise à jour des résultats d'un match dans un tournoi
+PUT {{host}}api/tournois/5f7679702b5b88b6d78b2799/matchs/5f7679702b5b88b6d78b2799
 Content-Type: application/json
 
-
-### Mise à jour de la formation d'une équipe spécifique
-PUT {{host}}api/equipes/6620f411cf33049f89db3f34/formation
-Content-Type: application/json
-
-{ "formation": 
-[
 {
-  "joueurId": "6620f402cf33049f89db3f30",
-  "position": "Forward"
-},
-{
-  "joueurId": "66210cedbae692a7c849cc7e",
-  "position": "Striker"
-}
-]
+  "scoreA": 3,
+  "scoreB": 2
 }
 
 ###
 
-### Modifier les tactiques d'une équipe spécifique
-PUT {{host}}api/equipes/6620f411cf33049f89db3f34/tactiques
+### Mise à jour du classement d'un tournoi
+PUT {{host}}/api/tournois/5f7679702b5b88b6d78b2799/classement
 Content-Type: application/json
 
 {
-  "tactiques": "Contre-Attaque"
+  "classement": [
+    {"equipeId": "5f7679702b5b88b6d78b273b", "points": 10},
+    {"equipeId": "5f7679702b5b88b6d78b274c", "points": 8}
+  ]
 }
 
 ###
 
-### Supprimer une équipe spécifique
-DELETE {{host}}api/equipes/6620f411cf33049f89db3f34"pasfaire"
+### Annoncer les gagnants d'un tournoi
+PUT {{host}}/api/tournois/5f7679702b5b88b6d78b2799/annoncerGagnants
 Content-Type: application/json
+
+{
+  "gagnant": "5f7679702b5b88b6d78b273b"
+}
 
 ###
-
-### Ajouter un joueur à une équipe
-PUT {{host}}api/equipes/662252b2667ef7818831ea69/ajouter/66226077667ef7818831eab0
-Content-Type: application/json
-
-###
-
-### Vendre un joueur de l'équipe
-PUT {{host}}api/equipes/6620f411cf33049f89db3f34/vendre/66225ff6667ef7818831eaaa
-Content-Type: application/json
-
 
 

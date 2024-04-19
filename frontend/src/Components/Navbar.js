@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import { useState, useEffect } from 'react';
 
@@ -58,15 +58,29 @@ export default function Navbar() {
                           <Link to={"/"} className={"nav-link"} aria-current="page">Accueil</Link>
                           {userSession ? (
                               <>
-                                  <Link onClick={() => window.sessionStorage.clear()} to={"/"} style={{marginLeft: screenSize.width > 900 ? "auto" : "", width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-danger"}>Déconnexion</Link>
-                                  {userSession.isAdmin && (
-                                  <Link to={"/admin"} style={{ width: screenSize.width < 900 ? "50%" : "" }} className={"btn btn-primary ms-2"}>Panel admin</Link>
-                  )}
+                                  <Link
+                                    to={"/"}
+                                    style={{marginLeft: screenSize.width > 900 ? "auto" : "", width:screenSize.width < 900 ? "50%" : ""}}
+                                    className={"btn btn-danger"}
+                                    onClick={() => {
+                                        window.sessionStorage.clear();
+                                        window.location.reload();
+                                    }}
+                                  >
+                                      Déconnexion
+                                  </Link>                                  {userSession.isAdmin && (
+                                    <Link to={"/admin"} style={{width: screenSize.width < 900 ? "50%" : ""}}
+                                          className={"btn btn-primary ms-2"}>Panel admin</Link>
+                                  )}
                               </>
-                          ) :
+                            ) :
                             <>
-                                <Link to={"/login"} style={{marginLeft: screenSize.width > 900 ? "auto" : "", width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-success"}>Connexion</Link>
-                                <Link to={"/register"} style={{width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-primary ms-2"}>Inscription</Link>
+                                <Link to={"/login"} style={{
+                                    marginLeft: screenSize.width > 900 ? "auto" : "",
+                                    width: screenSize.width < 900 ? "50%" : ""
+                                }} className={"btn btn-success"}>Connexion</Link>
+                                <Link to={"/register"} style={{width: screenSize.width < 900 ? "50%" : ""}}
+                                      className={"btn btn-primary ms-2"}>Inscription</Link>
 
                             </>
                           }

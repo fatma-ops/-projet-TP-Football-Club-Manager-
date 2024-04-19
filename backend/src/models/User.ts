@@ -6,7 +6,7 @@ export interface IUtilisateur extends Document {
     nom: string;
     email: string;
     motDePasse: string;
-    role: string;
+    isAdmin: boolean;
     club: IEquipe;
 }
 
@@ -14,7 +14,7 @@ const userSchema = new Schema({
     nom: { type: String, required: true },
     email: { type: String, required: true },
     motDePasse: { type: String, required: true },
-    role: { type: String, required: true },
+    isAdmin: { type: Boolean, required: true },
     club: { type: Schema.Types.ObjectId, ref: 'Equipe' }
 });
 

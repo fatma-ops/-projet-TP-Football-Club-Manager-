@@ -1,16 +1,26 @@
 @host = http://localhost:4000/
 
 ### Créer un nouvel utilisateur
-POST {{host}}api/users
+POST {{host}}api/users/signup
 Content-Type: application/json
 
 {
   "nom": "John",
-  "email": "john.doe@example.com",
-  "motDePasse": "s3cr3t",
-  "role": "admin",
+  "email": "fatmaaa@gmail.com", 
+  "motDePasse": "fatma1234",
+  "isAdmin": true,
   "club": "1234567890abcdef12345678"
 }
+
+### SignIn
+POST {{host}}api/users/signin
+Content-Type: application/json
+
+{
+  "email": "fatma@gmail.com",
+  "motDePasse": "fatma1234"
+}
+
 
 ### Obtenir tous les utilisateurs
 GET {{host}}api/users

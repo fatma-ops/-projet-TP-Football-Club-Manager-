@@ -38,7 +38,7 @@ router.post('/signup', async (req: Request, res: Response) => {
             return res.status(400).send({ message: "L'e-mail ou le mot de passe est incorrect." });
         }
 
-        return res.status(200).send({ message: "Connexion réussie." });
+        return res.status(200).json(utilisateur);
     } catch (error ) {
         res.status(500).send({ message: error});
     }

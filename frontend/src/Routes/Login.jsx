@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import Navbar from "../Components/Navbar";
-
+import {useNavigate} from "react-router-dom";
 import axios from 'axios';
+
+import Navbar from "../Components/Navbar";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +16,8 @@ const Login = () => {
       const response = await axios.post(`http://localhost:4000/api/users/signin`, { email, motDePasse });
       console.log(response.data.message);
       setMessage(response.data.message);
+      window.sessionStorage.setItem('user', JSON.stringify(response.data));
+      navigate("/user");
     } catch (error) {
       console.error('Erreur lors de la connexion:', error.message);
       setMessage(error.response.data.message);

@@ -28,6 +28,20 @@ const useScreenSize = () => {
 };
 
 export default function Navbar() {
+    const [userSession, setUserSession] = useState(JSON.parse(window.sessionStorage.getItem("user")));
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setUserSession(JSON.parse(window.sessionStorage.getItem("user")));
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []);
+
     const screenSize = useScreenSize();
     return (
       <div>
@@ -42,8 +56,16 @@ export default function Navbar() {
                   <div className={"collapse navbar-collapse"} id="navbarNavAltMarkup">
                       <div className={"navbar-nav w-100"}>
                           <Link to={"/"} className={"nav-link"} aria-current="page">Accueil</Link>
-                          <Link to={"/login"} style={{marginLeft: screenSize.width > 900 ? "auto" : "", width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-success"}>Connexion</Link>
-                          <Link to={"/register"} style={{width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-primary ms-2"}>Inscription</Link>
+                          {userSession ? (
+                              <>
+                                  <Link onClick={() => window.sessionStorage.clear()} to={"/"} style={{marginLeft: screenSize.width > 900 ? "auto" : "", width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-danger"}>Déconnexion</Link>
+                              </>
+                          ) :
+                            <>
+                                <Link to={"/login"} style={{marginLeft: screenSize.width > 900 ? "auto" : "", width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-success"}>Connexion</Link>
+                                <Link to={"/register"} style={{width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-primary ms-2"}>Inscription</Link>
+                            </>
+                          }
                       </div>
                   </div>
               </div>

@@ -41,7 +41,7 @@ router.get('/:id/matches', async (req: Request, res: Response) => {
         const matchByEquipe = await Match.find({ $or: [{ equipeA: req.params.id }, { equipeB: req.params.id }] }).populate('equipeA equipeB');
 
         if (!matchByEquipe.length) {
-            return res.status(404).json({ message: 'Aucun match trouvé pour cette équipe' });
+            return res.status(404).json({ message: 'Aucun match trouvé' });
         }
 
         const today = new Date();

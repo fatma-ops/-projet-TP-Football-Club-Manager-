@@ -1,21 +1,27 @@
 import Navbar from "../Components/Navbar";
-import {Link, Navigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {format} from "date-fns";
-import Button from "bootstrap/js/src/button";
 
 export default function User() {
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
   const [matchs, setMatchs] = useState([]);
   const [marcheJoueurs, setMarcheJoueurs] = useState([]);
+  const navigate = useNavigate();
 
-  const userSession = window.sessionStorage.getItem("user") || {_id: "6621177fad7fc5d893090f36"};
+  if (!window.sessionStorage.getItem("user")) {
+    navigate("/login")
+  }
+
+  const userSession = JSON.parse(window.sessionStorage.getItem("user"));
 
   const matchsEquipe = async () => await axios.get(`http://localhost:4000/api/equipes/${user.club._id}/matches`)
     .then((response) => {
       setMatchs(response.data);
+    }).catch((error) => {
+      console.error(error);
     });
 
   const marcheDesJoueurs = async () => await axios.get(`http://localhost:4000/api/joueurs/market`)
@@ -27,7 +33,7 @@ export default function User() {
 
   const ajouterJoueurEquipe = async (joueur) => {
     await axios.put(`http://localhost:4000/api/equipes/${user.club._id}/ajouter/${joueur._id}`)
-      .then((response) => {
+      .then(() => {
         window.location.reload();
       }).catch((error) => {
         console.error(error);
@@ -36,7 +42,7 @@ export default function User() {
 
   const vendreJoueurEquipe = async (joueur) => {
     await axios.put(`http://localhost:4000/api/equipes/${user.club._id}/vendre/${joueur._id}`)
-      .then((response) => {
+      .then(() => {
         window.location.reload();
       }).catch((error) => {
         console.error(error);
@@ -88,7 +94,6 @@ export default function User() {
   });
 
   const prochainsMatchs = matchs.map((match) => {
-    console.log(new Date(), new Date(match.dateDuMatch));
     const equipeAdverse = match.equipeA.nom === user.club.nom ? match.equipeB.nom : match.equipeA.nom;
     return (
       <div key={match._id} className={"card"}>

@@ -47,7 +47,7 @@ export default function Navbar() {
       <div>
           <nav style={{backgroundColor: "#e3f2fd"}} className={"navbar navbar-expand-lg"}>
               <div className={"container-fluid"}>
-                  <Link to={"/"} className={"navbar-brand"}>Football Manager 2025</Link> 
+                  <Link to={"/"} className={"navbar-brand"}>Football Manager 2025</Link>
                   <button className={"navbar-toggler"} type="button" data-bs-toggle="collapse"
                           data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                           aria-label="Toggle navigation">
@@ -56,13 +56,12 @@ export default function Navbar() {
                   <div className={"collapse navbar-collapse"} id="navbarNavAltMarkup">
                       <div className={"navbar-nav w-100"}>
                           <Link to={"/"} className={"nav-link"} aria-current="page">Accueil</Link>
-                          {/* {userSession && <Link to={"/user"} className={"nav-link"}>Tableau de bord</Link>}                           */}
                           {userSession ? (
                               <>
                                   <Link onClick={() => window.sessionStorage.clear()} to={"/"} style={{marginLeft: screenSize.width > 900 ? "auto" : "", width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-danger"}>Déconnexion</Link>
-                                  
-                                 <Link to={"/admin"} style={{ width: screenSize.width < 900 ? "50%" : "" }} className={"btn btn-primary ms-2"}>Panel admin</Link>
-                  
+                                  {userSession.isAdmin && (
+                    <Link to={"/admin"} style={{ width: screenSize.width < 900 ? "50%" : "" }} className={"btn btn-primary ms-2"}>Panel admin</Link>
+                  )}
                               </>
                           ) :
                             <>

@@ -33,20 +33,16 @@ const rooting = createBrowserRouter([
       errorElement: <ErrorPage/>,
     },
 
-  {
+    {
       path: "/user",
       element: <User/>,
       errorElement: <ErrorPage/>,
-  },
-  {
-    path: "/admin",
-    element: <Admin/>,
-    errorElement: <ErrorPage/>,
-}
-    path: "*",
-    element: <ErrorPage/>,
-  }
-
+    },
+    {
+      path: "/admin",
+      element: <Admin/>,
+      errorElement: <ErrorPage/>,
+    },
   ]
 )
 

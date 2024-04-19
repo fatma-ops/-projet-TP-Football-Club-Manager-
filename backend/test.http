@@ -1,85 +1,147 @@
 @host = http://localhost:4000/
 
-### Créer un nouvel utilisateur
-POST {{host}}api/users/signup
-Content-Type: application/json
+# ### Créer un nouvel utilisateur
+# POST {{host}}api/users/signup
+# Content-Type: application/json
 
-{
-  "nom": "John",
-  "email": "fatmaaa@gmail.com", 
-  "motDePasse": "fatma1234",
-  "isAdmin": true,
-  "club": "1234567890abcdef12345678"
-}
+# {
+#   "nom": "John",
+#   "email": "fatmaaa@gmail.com", 
+#   "motDePasse": "fatma1234",
+#   "isAdmin": true,
+#   "club": "1234567890abcdef12345678"
+# }
 
-### SignIn
-POST {{host}}api/users/signin
-Content-Type: application/json
+# ### SignIn
+# POST {{host}}api/users/signin
+# Content-Type: application/json
 
-{
-  "email": "fatma@gmail.com",
-  "motDePasse": "fatma1234"
-}
+# {
+#   "email": "fatma@gmail.com",
+#   "motDePasse": "fatma1234"
+# }
 
 
-### Obtenir tous les utilisateurs
-GET {{host}}api/users
+# ### Obtenir tous les utilisateurs
+# GET {{host}}api/users
 
-### Créer un nouveau joueur
-POST {{host}}api/joueurs
-Content-Type: application/json
+# ### Créer un nouveau joueur
+# POST {{host}}api/joueurs
+# Content-Type: application/json
 
-{
-  "nom": "Robert Lewandowski",
-  "age": 32,
-  "nationalite": "Polish",
-  "position": "Striker",
-  "valeur": 100000000,
-  "equipe": "1234567890abcdef12345680"
-}
+# {
+#   "nom": "Achraf Hakimi",
+#   "age": 23,
+#   "nationalite": "Moroccan",
+#   "position": "Right Back",
+#   "valeur": 60000000,
+#   "equipe": "662237db5195197a89bb7d74"
+# }
 
-### Obtenir tous les joueurs
+# ### Obtenir tous les joueurs
+# GET {{host}}api/joueurs
+
+# ### Créer une nouvelle équipe
+# POST {{host}}api/equipes
+# Content-Type: application/json
+
+# {
+#   "nom": "FC Barcelona",
+#   "budget": 1000000,
+#   "manager": "1234567890abcdef12345678",
+#   "joueurs": ["1234567890abcdef12345678"]
+# }
+
+# ### Obtenir toutes les équipes
+# GET {{host}}api/equipes
+
+# ### Créer un nouveau match
+# POST {{host}}api/matchs
+# Content-Type: application/json
+
+# {
+#   "equipeA": "1234567890abcdef12345678",
+#   "equipeB": "1234567890abcdef12345679",
+#   "scoreA": 3,
+#   "scoreB": 1,
+#   "dateDuMatch": "2024-04-01T14:00:00.000Z"
+# }
+
+# ### Obtenir tous les matchs
+# GET {{host}}api/matchs
+
+# ### Créer un nouveau tournoi
+# POST {{host}}api/tournois
+# Content-Type: application/json
+
+# {
+#   "nomDuTournoi": "Champions League",
+#   "reglement": "Standard UEFA rules",
+#   "equipesParticipantes": ["1234567890abcdef12345678", "1234567890abcdef12345679"],
+#   "matchs": ["1234567890abcdef1234567a"]
+# }
+
+# ### Obtenir tous les tournois
+# GET {{host}}api/tournois
+
+### Récupérer tous les joueurs
 GET {{host}}api/joueurs
-
-### Créer une nouvelle équipe
-POST {{host}}api/equipes
 Content-Type: application/json
 
-{
-  "nom": "FC Barcelona",
-  "budget": 1000000,
-  "manager": "1234567890abcdef12345678",
-  "joueurs": ["1234567890abcdef12345678"]
-}
-
-### Obtenir toutes les équipes
+### Récupérer toutes les équipes
 GET {{host}}api/equipes
+Content-Type: application/json
 
-### Créer un nouveau match
-POST {{host}}api/matchs
+###
+### Récupérer les joueurs non assignés (sur le marché)
+GET {{host}}api/joueurs/market
+Content-Type: application/json
+
+
+### Mise à jour de la formation d'une équipe spécifique
+PUT {{host}}api/equipes/6620f411cf33049f89db3f34/formation
+Content-Type: application/json
+
+{ "formation": 
+[
+{
+  "joueurId": "6620f402cf33049f89db3f30",
+  "position": "Forward"
+},
+{
+  "joueurId": "66210cedbae692a7c849cc7e",
+  "position": "Striker"
+}
+]
+}
+
+###
+
+### Modifier les tactiques d'une équipe spécifique
+PUT {{host}}api/equipes/6620f411cf33049f89db3f34/tactiques
 Content-Type: application/json
 
 {
-  "equipeA": "1234567890abcdef12345678",
-  "equipeB": "1234567890abcdef12345679",
-  "scoreA": 3,
-  "scoreB": 1,
-  "dateDuMatch": "2024-04-01T14:00:00.000Z"
+  "tactiques": "Contre-Attaque"
 }
 
-### Obtenir tous les matchs
-GET {{host}}api/matchs
+###
 
-### Créer un nouveau tournoi
-POST {{host}}api/tournois
+### Supprimer une équipe spécifique
+DELETE {{host}}api/equipes/6620f411cf33049f89db3f34"pasfaire"
 Content-Type: application/json
 
-{
-  "nomDuTournoi": "Champions League",
-  "reglement": "Standard UEFA rules",
-  "equipesParticipantes": ["1234567890abcdef12345678", "1234567890abcdef12345679"],
-  "matchs": ["1234567890abcdef1234567a"]
-}
+###
 
-### Obtenir tous les tournois
-GET {{host}}api/tournois
+### Ajouter un joueur à une équipe
+PUT {{host}}api/equipes/662252b2667ef7818831ea69/ajouter/66226077667ef7818831eab0
+Content-Type: application/json
+
+###
+
+### Vendre un joueur de l'équipe
+PUT {{host}}api/equipes/6620f411cf33049f89db3f34/vendre/66225ff6667ef7818831eaaa
+Content-Type: application/json
+
+
+

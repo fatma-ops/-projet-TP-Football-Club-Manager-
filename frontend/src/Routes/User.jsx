@@ -92,7 +92,6 @@ export default function User() {
       </div>
     );
   });
-
   const prochainsMatchs = matchs.map((match) => {
     const equipeAdverse = match.equipeA.nom === user.club.nom ? match.equipeB.nom : match.equipeA.nom;
     return (

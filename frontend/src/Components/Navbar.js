@@ -60,7 +60,7 @@ export default function Navbar() {
                               <>
                                   <Link onClick={() => window.sessionStorage.clear()} to={"/"} style={{marginLeft: screenSize.width > 900 ? "auto" : "", width:screenSize.width < 900 ? "50%" : ""}} className={"btn btn-danger"}>Déconnexion</Link>
                                   {userSession.isAdmin && (
-                    <Link to={"/admin"} style={{ width: screenSize.width < 900 ? "50%" : "" }} className={"btn btn-primary ms-2"}>Panel admin</Link>
+                                  <Link to={"/admin"} style={{ width: screenSize.width < 900 ? "50%" : "" }} className={"btn btn-primary ms-2"}>Panel admin</Link>
                   )}
                               </>
                           ) :

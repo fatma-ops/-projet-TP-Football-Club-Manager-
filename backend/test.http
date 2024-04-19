@@ -5,8 +5,8 @@ POST {{host}}api/users
 Content-Type: application/json
 
 {
-  "nom": "John",
-  "email": "john.doe@example.com",
+  "nom": "Mourad",
+  "email": "mourad@example.com",
   "motDePasse": "s3cr3t",
   "role": "admin",
   "club": "1234567890abcdef12345678"

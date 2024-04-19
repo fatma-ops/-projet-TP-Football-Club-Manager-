@@ -1,13 +1,11 @@
-// Importez User si ce n'est pas déjà fait
 import mongoose, { Schema, Document } from 'mongoose';
-import { IJoueur } from "./Joueur";
-import { IUtilisateur } from "./User"; // Assurez-vous que le chemin d'importation est correct
+import { IUtilisateur } from "./User";
 
 export interface IEquipe extends Document {
     nom: string;
     budget: number;
     manager: IUtilisateur;
-    joueurs: IJoueur[];
+    joueurs: string[];
 }
 
 const equipeSchema = new Schema({

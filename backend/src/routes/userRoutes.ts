@@ -6,10 +6,10 @@ import bcrypt from 'bcrypt'
 const router = Router();
 
 
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', async (_req: Request, res: Response) => {
     const users = await User.find();
     if (!users.length) {
-        return res.status(404).json({ message: 'No users found' });
+        return res.status(404).json({ message: "Pas d'utilisateur trouvé" });
     }
     res.status(200).json(users);
 });
@@ -47,9 +47,10 @@ router.post('/signup', async (req: Request, res: Response) => {
 
 
 router.get('/:id', async (req: Request, res: Response) => {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).populate({ path: 'club', populate: "joueurs"});
+
     if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ message: 'Utilisateur introuvable' });
     }
     res.status(200).json(user);
 });
@@ -59,20 +60,21 @@ router.put('/:id', async (req: Request, res: Response) => {
         const { name, email, motDePasse, isAdmin, club } = req.body;
         const user = await User.findByIdAndUpdate(req.params.id, { name, email, motDePasse, isAdmin, club }, { new: true });
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'Utilisateur introuvable' });
         }
         res.status(200).json(user);
     } catch (error) {
-        res.status(400).json({ message: 'Error updating user', error: (error as Error).message });
+        res.status(400).json({ message: "Erreur lors de la mise à jour de l'utilisateur", error: (error as Error).message });
     }
 });
 
 router.delete('/:id', async (req: Request, res: Response) => {
     const deleted = await User.findByIdAndDelete(req.params.id);
     if (!deleted) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ message: 'Utilisateur introuvable' });
     }
     res.status(204).send();
 });
 
 export default router ;
+

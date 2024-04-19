@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../Components/Navbar';
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
   const [nom, setNom] = useState('');
@@ -8,16 +9,17 @@ const Register = () => {
   const [motDePasse, setMotDePasse] = useState('');
   const [club, setClub] = useState('');
   const [message, setMessage] = useState('');
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:4000/api/users/signup', { nom, email, motDePasse, club });
       console.log(response.data.message);
       setMessage(response.data.message);
+      navigate("/login")
     } catch (error) {
       console.error('Erreur lors de l\'inscription:', error.message);
-      setMessage('Une erreur est survenue lors de l\'inscription.');
+      setMessage(error.response.data.message);
     }
   };
 

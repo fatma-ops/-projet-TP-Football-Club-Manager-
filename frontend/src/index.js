@@ -10,8 +10,8 @@ import {
 } from "react-router-dom";
 import ErrorPage from "./Routes/errorPage";
 import Home from "./Routes/Home";
-import Login from './Routes/login';
-import Register from './Routes/register';
+import Login from './Routes/Login';
+import Register from './Routes/Register';
 import User from "./Routes/User";
 
 const rooting = createBrowserRouter([

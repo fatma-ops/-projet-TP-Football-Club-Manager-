@@ -5,15 +5,16 @@ POST {{host}}api/users
 Content-Type: application/json
 
 {
-  "nom": "John",
-  "email": "john.doe@example.com",
-  "motDePasse": "s3cr3t",
+  "nom": "Fatma",
+  "email": "Fatma.doe@example.com",
+  "motDePasse": "$2b$10$BOeLq/D20QdhuficdBgs0uhANmpQnndPANnPp0cP1iDjMDNxMyO0u",
   "role": "admin",
   "club": "1234567890abcdef12345678"
 }
 
 ### Obtenir tous les utilisateurs
 GET {{host}}api/users
+
 
 ### Créer un nouveau joueur
 POST {{host}}api/joueurs

@@ -13,8 +13,8 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     try {
-        const { name, email, motDePasse, role, club } = req.body;
-        const user = new User({ name, email, motDePasse, role, club });
+        const { nom, email, motDePasse, role, club } = req.body;
+        const user = new User({ nom, email, motDePasse, role, club });
         await user.save();
         res.status(201).json(user);
     } catch (error) {
@@ -32,8 +32,8 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.put('/:id', async (req: Request, res: Response) => {
     try {
-        const { name, email, motDePasse, role, club } = req.body;
-        const user = await User.findByIdAndUpdate(req.params.id, { name, email, motDePasse, role, club }, { new: true });
+        const { nom, email, motDePasse, role, club } = req.body;
+        const user = await User.findByIdAndUpdate(req.params.id, { nom, email, motDePasse, role, club }, { new: true });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
